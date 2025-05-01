@@ -8,6 +8,10 @@ app = FastAPI()
 class ScrapeRequest(BaseModel):
     url: str
 
+@app.get("/")
+async def root():
+    return {"message": "Scraper API is live"}
+
 @app.post("/scrape")
 async def scrape_page(data: ScrapeRequest):
     async with async_playwright() as p:
