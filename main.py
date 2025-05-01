@@ -1,7 +1,3 @@
-@app.get("/")
-async def root():
-    return {"status": "ok"}
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 from playwright.async_api import async_playwright
@@ -32,3 +28,4 @@ async def scrape_page(data: ScrapeRequest):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
