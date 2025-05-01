@@ -16,9 +16,10 @@ async def root():
 async def scrape_page(data: ScrapeRequest):
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
+        page = await browser.new_page(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
         try:
-            await page.goto(data.url, timeout=30000)
+            await page.goto(data.url, timeout=45000)
+            await page.wait_for_selector("body", timeout=10000)  # Adjust to something unique if known
             content = await page.title()
             await browser.close()
             return {"title": content}
