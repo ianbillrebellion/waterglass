@@ -1,3 +1,7 @@
+@app.get("/")
+async def root():
+    return {"status": "ok"}
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from playwright.async_api import async_playwright
